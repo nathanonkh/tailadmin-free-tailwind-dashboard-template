@@ -8,11 +8,11 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>
-      Basic Tables | TailAdmin - Tailwind CSS Admin Dashboard Template
+      Data Tables | TailAdmin - Tailwind CSS Admin Dashboard Template
     </title>
   </head>
   <body
-    x-data="{ page: 'basicTables', 'loaded': true, 'darkMode': false, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-data="{ page: 'dataTables', 'loaded': true, 'darkMode': false, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
     x-init="
          darkMode = JSON.parse(localStorage.getItem('darkMode'));
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
@@ -44,7 +44,7 @@
         <main>
           <div class="mx-auto max-w-(--breakpoint-2xl) p-4 md:p-6">
             <!-- Breadcrumb Start -->
-            <div x-data="{ pageName: `Basic Tables`}">
+            <div x-data="{ pageName: `Data Tables`}">
               <include src="./partials/breadcrumb.html" />
             </div>
             <!-- Breadcrumb End -->
@@ -57,14 +57,14 @@
                   <h3
                     class="text-base font-medium text-gray-800 dark:text-white/90"
                   >
-                    Basic Table 1
+                    Datatable 1
                   </h3>
                 </div>
                 <div
                   class="border-t border-gray-100 p-5 sm:p-6 dark:border-gray-800"
                 >
                   <!-- ====== Table One Start -->
-                  <include src="./partials/table/table-01.html" />
+                  <include src="./partials/table/table-07.html" />
                   <!-- ====== Table One End -->
                 </div>
               </div>
@@ -76,14 +76,14 @@
                   <h3
                     class="text-base font-medium text-gray-800 dark:text-white/90"
                   >
-                    Basic Table 2
+                    Datatable 2
                   </h3>
                 </div>
                 <div
                   class="border-t border-gray-100 p-5 sm:p-6 dark:border-gray-800"
                 >
                   <!-- ====== Table Two Start -->
-                  <include src="./partials/table/table-02.html" />
+                  <include src="./partials/table/table-08.html" />
                   <!-- ====== Table Two End -->
                 </div>
               </div>
@@ -95,72 +95,15 @@
                   <h3
                     class="text-base font-medium text-gray-800 dark:text-white/90"
                   >
-                    Basic Table 3
+                    Datatable 3
                   </h3>
                 </div>
                 <div
                   class="border-t border-gray-100 p-5 sm:p-6 dark:border-gray-800"
                 >
                   <!-- ====== Table Three Start -->
-                  <include src="./partials/table/table-03.html" />
+                  <include src="./partials/table/table-09.html" />
                   <!-- ====== Table Three End -->
-                </div>
-              </div>
-
-              <div
-                class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]"
-              >
-                <div class="px-5 py-4 sm:px-6 sm:py-5">
-                  <h3
-                    class="text-base font-medium text-gray-800 dark:text-white/90"
-                  >
-                    Basic Table 4
-                  </h3>
-                </div>
-                <div
-                  class="border-t border-gray-100 p-5 sm:p-6 dark:border-gray-800"
-                >
-                  <!-- ====== Table Four Start -->
-                  <include src="./partials/table/table-04.html" />
-                  <!-- ====== Table Four End -->
-                </div>
-              </div>
-
-              <div
-                class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]"
-              >
-                <div class="px-5 py-4 sm:px-6 sm:py-5">
-                  <h3
-                    class="text-base font-medium text-gray-800 dark:text-white/90"
-                  >
-                    Basic Table 5
-                  </h3>
-                </div>
-                <div
-                  class="border-t border-gray-100 p-5 sm:p-6 dark:border-gray-800"
-                >
-                  <!-- ====== Table Five Start -->
-                  <include src="./partials/table/table-05.html" />
-                  <!-- ====== Table Five End -->
-                </div>
-              </div>
-
-              <div
-                class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]"
-              >
-                <div class="px-5 py-4 sm:px-6 sm:py-5">
-                  <h3
-                    class="text-base font-medium text-gray-800 dark:text-white/90"
-                  >
-                    Basic Table 6
-                  </h3>
-                </div>
-                <div
-                  class="border-t border-gray-100 p-5 sm:p-6 dark:border-gray-800"
-                >
-                  <!-- ====== Table Six Start -->
-                  <include src="./partials/table/table-06.html" />
-                  <!-- ====== Table Six End -->
                 </div>
               </div>
             </div>
