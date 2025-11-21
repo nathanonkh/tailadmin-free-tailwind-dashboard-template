@@ -784,3 +784,69 @@
     <!-- ===== Page Wrapper End ===== -->
   </body>
 </html>
+<script>
+  function invoiceProducts() {
+    return {
+      products: [
+        {
+          name: "Macbook pro 13”",
+          price: 1200,
+          quantity: 1,
+          discount: 0,
+          total: (1200 * 1).toFixed(2),
+        },
+        {
+          name: "Apple Watch Ultra",
+          price: 300,
+          quantity: 1,
+          discount: 50,
+          total: (300 * 1 * 0.5).toFixed(2),
+        },
+        {
+          name: "iPhone 15 Pro Max",
+          price: 800,
+          quantity: 2,
+          discount: 0,
+          total: (800 * 2).toFixed(2),
+        },
+        {
+          name: "iPad Pro 3rd Gen",
+          price: 900,
+          quantity: 1,
+          discount: 0,
+          total: (900 * 1).toFixed(2),
+        },
+      ],
+      form: { name: "", price: 0, quantity: 1, discount: 0 },
+      addProduct() {
+        if (!this.form.name || this.form.price <= 0 || this.form.quantity <= 0)
+          return;
+        const discountAmount =
+          this.form.price * this.form.quantity * (this.form.discount / 100);
+        const total = this.form.price * this.form.quantity - discountAmount;
+        this.products.push({
+          name: this.form.name,
+          price: this.form.price,
+          quantity: this.form.quantity,
+          discount: this.form.discount,
+          total: total.toFixed(2),
+        });
+        this.resetForm();
+      },
+      resetForm() {
+        this.form = { name: "", price: 0, quantity: 1, discount: 0 };
+      },
+      get subtotal() {
+        return this.products
+          .reduce((sum, p) => sum + parseFloat(p.total), 0)
+          .toFixed(2);
+      },
+      get vat() {
+        return (this.subtotal * 0.1).toFixed(2);
+      },
+      get total() {
+        return (parseFloat(this.subtotal) + parseFloat(this.vat)).toFixed(2);
+      },
+    };
+  }
+</script>
