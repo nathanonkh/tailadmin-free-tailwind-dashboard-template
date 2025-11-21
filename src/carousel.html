@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Carousel | TailAdmin - Tailwind CSS Admin Dashboard Template</title>
+  </head>
+  <body
+    x-data="{ page: 'carousel', 'loaded': true, 'darkMode': false, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-init="
+         darkMode = JSON.parse(localStorage.getItem('darkMode'));
+         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+    :class="{'dark bg-gray-900': darkMode === true}"
+  >
+    <!-- ===== Preloader Start ===== -->
+    <include src="./partials/preloader.html"></include>
+    <!-- ===== Preloader End ===== -->
+
+    <!-- ===== Page Wrapper Start ===== -->
+    <div class="flex h-screen overflow-hidden">
+      <!-- ===== Sidebar Start ===== -->
+      <include src="./partials/sidebar.html"></include>
+      <!-- ===== Sidebar End ===== -->
+
+      <!-- ===== Content Area Start ===== -->
+      <div
+        class="relative flex flex-1 flex-col overflow-x-hidden overflow-y-auto"
+      >
+        <!-- Small Device Overlay Start -->
+        <include src="./partials/overlay.html" />
+        <!-- Small Device Overlay End -->
+
+        <!-- ===== Header Start ===== -->
+        <include src="./partials/header.html" />
+        <!-- ===== Header End ===== -->
+
+        <!-- ===== Main Content Start ===== -->
+        <main>
+          <div class="mx-auto max-w-(--breakpoint-2xl) p-4 md:p-6">
+            <!-- Breadcrumb Start -->
+            <div x-data="{ pageName: `Carousel`}">
+              <div
+                class="flex flex-wrap items-center justify-between gap-3 pb-6"
+              >
+                <h2
+                  class="text-xl font-semibold text-gray-800 dark:text-white/90"
+                  x-text="pageName"
+                ></h2>
+                <nav>
+                  <ol class="flex items-center gap-1.5">
+                    <li>
+                      <a
+                        class="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400"
+                        href="index.html"
+                      >
+                        Home
+                        <svg
+                          class="stroke-current"
+                          width="17"
+                          height="16"
+                          viewBox="0 0 17 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M6.0765 12.667L10.2432 8.50033L6.0765 4.33366"
+                            stroke=""
+                            stroke-width="1.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </a>
+                    </li>
+                    <li
+                      class="text-sm text-gray-800 dark:text-white/90"
+                      x-text="pageName"
+                    ></li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+            <!-- Breadcrumb End -->
+
+            <div class="grid grid-cols-1 gap-5 xl:grid-cols-2 xl:gap-6">
+              <div
+                class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]"
+              >
+                <div class="px-6 py-5">
+                  <h3
+                    class="text-base font-medium text-gray-800 dark:text-white/90"
+                  >
+                    Slides only
+                  </h3>
+                </div>
+                <div
+                  class="border-t border-gray-100 p-3 sm:p-6 dark:border-gray-800"
+                >
+                  <div
+                    class="swiper carouselOne rounded-lg border border-gray-200 dark:border-gray-800"
+                  >
+                    <div class="swiper-wrapper">
+                      <!-- slider item -->
+                      <div class="swiper-slide">
+                        <div class="overflow-hidden">
+                          <img
+                            src="./images/carousel/carousel-01.png"
+                            alt="carousel"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- slider item -->
+                      <div class="swiper-slide">
+                        <div class="overflow-hidden">
+                          <img
+                            src="./images/carousel/carousel-02.png"
+                            alt="carousel"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- slider item -->
+                      <div class="swiper-slide">
+                        <div class="overflow-hidden">
+                          <img
+                            src="./images/carousel/carousel-03.png"
+                            alt="carousel"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- slider item -->
+                      <div class="swiper-slide">
+                        <div class="overflow-hidden">
+                          <img
+                            src="./images/carousel/carousel-04.png"
+                            alt="carousel"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]"
+              >
+                <div class="px-6 py-5">
+                  <h3
+                    class="text-base font-medium text-gray-800 dark:text-white/90"
+                  >
+                    With controls
+                  </h3>
+                </div>
+                <div
+                  class="border-t border-gray-100 p-3 sm:p-6 dark:border-gray-800"
+                >
+                  <div
+                    class="swiper carouselTwo rounded-lg border border-gray-200 dark:border-gray-800"
+                  >
+                    <div class="swiper-wrapper">
+                      <!-- slider item -->
+                      <div class="swiper-slide">
+                        <div class="overflow-hidden">
+                          <img
+                            src="./images/carousel/carousel-02.png"
+                            alt="carousel"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- slider item -->
+                      <div class="swiper-slide">
+                        <div class="overflow-hidden">
+                          <img
+                            src="./images/carousel/carousel-03.png"
+                            alt="carousel"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- slider item -->
+                      <div class="swiper-slide">
+                        <div class="overflow-hidden">
+                          <img
+                            src="./images/carousel/carousel-04.png"
+                            alt="carousel"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- slider item -->
+                      <div class="swiper-slide">
+                        <div class="overflow-hidden">
+                          <img
+                            src="./images/carousel/carousel-01.png"
+                            alt="carousel"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev">
+                      <svg
+                        class="h-auto w-auto stroke-current"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M15.25 6L9 12.25L15.25 18.5"
+                          stroke=""
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                    <div class="swiper-button-next">
+                      <svg
+                        class="stroke-current"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8.75 19L15 12.75L8.75 6.5"
+                          stroke=""
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]"
+              >
+                <div class="px-6 py-5">
+                  <h3
+                    class="text-base font-medium text-gray-800 dark:text-white/90"
+                  >
+                    With indicators
+                  </h3>
+                </div>
+                <div
+                  class="border-t border-gray-100 p-3 sm:p-6 dark:border-gray-800"
+                >
+                  <div
+                    class="swiper carouselThree rounded-lg border border-gray-200 dark:border-gray-800"
+                  >
+                    <div class="swiper-wrapper">
+                      <!-- slider item -->
+                      <div class="swiper-slide">
+                        <div class="overflow-hidden">
+                          <img
+                            src="./images/carousel/carousel-03.png"
+                            alt="carousel"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- slider item -->
+                      <div class="swiper-slide">
+                        <div class="overflow-hidden">
+                          <img
+                            src="./images/carousel/carousel-04.png"
+                            alt="carousel"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- slider item -->
+                      <div class="swiper-slide">
+                        <div class="overflow-hidden">
+                          <img
+                            src="./images/carousel/carousel-01.png"
+                            alt="carousel"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- slider item -->
+                      <div class="swiper-slide">
+                        <div class="overflow-hidden">
+                          <img
+                            src="./images/carousel/carousel-02.png"
+                            alt="carousel"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]"
+              >
+                <div class="px-6 py-5">
+                  <h3
+                    class="text-base font-medium text-gray-800 dark:text-white/90"
+                  >
+                    With controls and indicators
+                  </h3>
+                </div>
+                <div
+                  class="border-t border-gray-100 p-3 sm:p-6 dark:border-gray-800"
+                >
+                  <div
+                    class="swiper carouselFour rounded-lg border border-gray-200 dark:border-gray-800"
+                  >
+                    <div class="swiper-wrapper">
+                      <!-- slider item -->
+                      <div class="swiper-slide">
+                        <div class="overflow-hidden">
+                          <img
+                            src="./images/carousel/carousel-04.png"
+                            alt="carousel"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- slider item -->
+                      <div class="swiper-slide">
+                        <div class="overflow-hidden">
+                          <img
+                            src="./images/carousel/carousel-01.png"
+                            alt="carousel"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- slider item -->
+                      <div class="swiper-slide">
+                        <div class="overflow-hidden">
+                          <img
+                            src="./images/carousel/carousel-02.png"
+                            alt="carousel"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- slider item -->
+                      <div class="swiper-slide">
+                        <div class="overflow-hidden">
+                          <img
+                            src="./images/carousel/carousel-03.png"
+                            alt="carousel"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev">
+                      <svg
+                        class="h-auto w-auto stroke-current"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M15.25 6L9 12.25L15.25 18.5"
+                          stroke=""
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                    <div class="swiper-button-next">
+                      <svg
+                        class="stroke-current"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8.75 19L15 12.75L8.75 6.5"
+                          stroke=""
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+        <!-- ===== Main Content End ===== -->
+      </div>
+      <!-- ===== Content Area End ===== -->
+    </div>
+    <!-- ===== Page Wrapper End ===== -->
+  </body>
+</html>

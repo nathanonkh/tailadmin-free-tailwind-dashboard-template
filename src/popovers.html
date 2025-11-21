@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Popovers | TailAdmin - Tailwind CSS Admin Dashboard Template</title>
+  </head>
+  <body
+    x-data="{ page: 'popovers', 'loaded': true, 'darkMode': false, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-init="
+         darkMode = JSON.parse(localStorage.getItem('darkMode'));
+         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+    :class="{'dark bg-gray-900': darkMode === true}"
+  >
+    <!-- ===== Preloader Start ===== -->
+    <include src="./partials/preloader.html"></include>
+    <!-- ===== Preloader End ===== -->
+
+    <!-- ===== Page Wrapper Start ===== -->
+    <div class="flex h-screen overflow-hidden">
+      <!-- ===== Sidebar Start ===== -->
+      <include src="./partials/sidebar.html"></include>
+      <!-- ===== Sidebar End ===== -->
+
+      <!-- ===== Content Area Start ===== -->
+      <div
+        class="relative flex flex-1 flex-col overflow-x-hidden overflow-y-auto"
+      >
+        <!-- Small Device Overlay Start -->
+        <include src="./partials/overlay.html" />
+        <!-- Small Device Overlay End -->
+
+        <!-- ===== Header Start ===== -->
+        <include src="./partials/header.html" />
+        <!-- ===== Header End ===== -->
+
+        <!-- ===== Main Content Start ===== -->
+        <main>
+          <div
+            class="mx-auto max-w-(--breakpoint-2xl) p-4 pb-20 md:p-6 md:pb-6"
+          >
+            <!-- Breadcrumb Start -->
+            <div x-data="{ pageName: `Popovers`}">
+              <div
+                class="flex flex-wrap items-center justify-between gap-3 pb-6"
+              >
+                <h2
+                  class="text-xl font-semibold text-gray-800 dark:text-white/90"
+                  x-text="pageName"
+                ></h2>
+                <nav>
+                  <ol class="flex items-center gap-1.5">
+                    <li>
+                      <a
+                        class="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400"
+                        href="index.html"
+                      >
+                        Home
+                        <svg
+                          class="stroke-current"
+                          width="17"
+                          height="16"
+                          viewBox="0 0 17 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M6.0765 12.667L10.2432 8.50033L6.0765 4.33366"
+                            stroke=""
+                            stroke-width="1.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </a>
+                    </li>
+                    <li
+                      class="text-sm text-gray-800 dark:text-white/90"
+                      x-text="pageName"
+                    ></li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+            <!-- Breadcrumb End -->
+
+            <div class="space-y-5 sm:space-y-6">
+              <div
+                class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]"
+              >
+                <div class="px-6 py-5">
+                  <h3
+                    class="text-base font-medium text-gray-800 dark:text-white/90"
+                  >
+                    Default Popover
+                  </h3>
+                </div>
+                <div
+                  class="border-t border-gray-100 p-4 sm:p-6 dark:border-gray-800"
+                >
+                  <!-- Reusable Popover Component
+Usage:
+1. Add a hidden template with your popover content
+2. Add data-popover attribute to trigger element pointing to the template
+
+<template id="my-popover">
+  <div>Your content here</div>
+</template>
+
+<button data-popover="#my-popover" data-popover-placement="right">
+  Click me
+</button>
+
+Attributes:
+- data-popover: CSS selector for the popover content template (required)
+- data-popover-placement: top, right, bottom, left (optional, default: right)
+-->
+
+                  <!-- Popover Content Templates (Hidden) -->
+                  <template id="popover-right">
+                    <div class="max-w-[300px]">
+                      <div
+                        class="relative z-20 rounded-t-xl border-b border-gray-200 px-5 py-3 dark:border-white/[0.03]"
+                      >
+                        <h4
+                          class="text-base font-semibold text-gray-800 dark:text-white/90"
+                        >
+                          Popover on Right
+                        </h4>
+                      </div>
+                      <div class="p-5">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Mauris facilisis congue justo nec facilisis.
+                        </p>
+                      </div>
+                    </div>
+                  </template>
+
+                  <template id="popover-top">
+                    <div class="max-w-[300px]">
+                      <div
+                        class="relative z-20 rounded-t-xl border-b border-gray-200 px-5 py-3 dark:border-white/[0.03]"
+                      >
+                        <h4
+                          class="text-base font-semibold text-gray-800 dark:text-white/90"
+                        >
+                          Popover on Top
+                        </h4>
+                      </div>
+                      <div class="p-5">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Mauris facilisis congue justo nec facilisis.
+                        </p>
+                      </div>
+                    </div>
+                  </template>
+
+                  <template id="popover-bottom">
+                    <div class="max-w-[300px]">
+                      <div
+                        class="relative z-20 rounded-t-xl border-b border-gray-200 px-5 py-3 dark:border-white/[0.03]"
+                      >
+                        <h4
+                          class="text-base font-semibold text-gray-800 dark:text-white/90"
+                        >
+                          Popover on Bottom
+                        </h4>
+                      </div>
+                      <div class="p-5">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Mauris facilisis congue justo nec facilisis.
+                        </p>
+                      </div>
+                    </div>
+                  </template>
+
+                  <template id="popover-left">
+                    <div class="max-w-[300px]">
+                      <div
+                        class="relative z-20 rounded-t-xl border-b border-gray-200 px-5 py-3 dark:border-white/[0.03]"
+                      >
+                        <h4
+                          class="text-base font-semibold text-gray-800 dark:text-white/90"
+                        >
+                          Popover on Left
+                        </h4>
+                      </div>
+                      <div class="p-5">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Mauris facilisis congue justo nec facilisis.
+                        </p>
+                      </div>
+                    </div>
+                  </template>
+
+                  <!-- Example Usage -->
+                  <div class="flex flex-wrap gap-4 p-8">
+                    <!-- Popover Right -->
+                    <button
+                      data-popover="#popover-right"
+                      data-popover-placement="right"
+                      class="bg-brand-500 shadow-theme-xs hover:bg-brand-600 inline-flex rounded-lg px-4 py-3 text-sm font-medium text-white"
+                    >
+                      Popover on Right
+                    </button>
+
+                    <!-- Popover Top -->
+                    <button
+                      data-popover="#popover-top"
+                      data-popover-placement="top"
+                      class="bg-brand-500 shadow-theme-xs hover:bg-brand-600 inline-flex rounded-lg px-4 py-3 text-sm font-medium text-white"
+                    >
+                      Popover on Top
+                    </button>
+
+                    <!-- Popover Bottom -->
+                    <button
+                      data-popover="#popover-bottom"
+                      data-popover-placement="bottom"
+                      class="bg-brand-500 shadow-theme-xs hover:bg-brand-600 inline-flex rounded-lg px-4 py-3 text-sm font-medium text-white"
+                    >
+                      Popover on Bottom
+                    </button>
+
+                    <!-- Popover Left -->
+                    <button
+                      data-popover="#popover-left"
+                      data-popover-placement="left"
+                      class="bg-brand-500 shadow-theme-xs hover:bg-brand-600 inline-flex rounded-lg px-4 py-3 text-sm font-medium text-white"
+                    >
+                      Popover on Left
+                    </button>
+                  </div>
+
+                  <!-- Popover functionality is now automatically initialized via index.js -->
+                  <!-- To reinitialize popovers after adding new elements dynamically, call: window.initPopovers() -->
+                </div>
+              </div>
+
+              <div
+                class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]"
+              >
+                <div class="px-6 py-5">
+                  <h3
+                    class="text-base font-medium text-gray-800 dark:text-white/90"
+                  >
+                    Popover with Button
+                  </h3>
+                </div>
+                <div
+                  class="border-t border-gray-100 p-4 sm:p-6 dark:border-gray-800"
+                >
+                  <!-- Reusable Popover Component
+Usage:
+1. Add a hidden template with your popover content
+2. Add data-popover attribute to trigger element pointing to the template
+
+<template id="my-popover">
+  <div>Your content here</div>
+</template>
+
+<button data-popover="#my-popover" data-popover-placement="right">
+  Click me
+</button>
+
+Attributes:
+- data-popover: CSS selector for the popover content template (required)
+- data-popover-placement: top, right, bottom, left (optional, default: right)
+-->
+
+                  <!-- Popover Content Templates (Hidden) -->
+                  <template id="popover-02-right">
+                    <div class="max-w-[390px]">
+                      <div
+                        class="relative z-20 w-full rounded-t-xl border-b border-gray-200 px-5 py-3 dark:border-white/[0.03]"
+                      >
+                        <h4
+                          class="text-base font-semibold text-gray-800 dark:text-white/90"
+                        >
+                          Popover Title
+                        </h4>
+                      </div>
+                      <div class="p-5">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                          Lorem ipsum dolor sit amet, consect adipiscing elit.
+                          Mauris facilisis congue exclamate justo nec facilisis.
+                        </p>
+                        <div class="mt-5 flex items-center gap-3">
+                          <button
+                            type="button"
+                            class="bg-brand-500 shadow-theme-xs hover:bg-brand-600 flex justify-center rounded-lg px-4 py-2 text-sm font-medium text-white"
+                          >
+                            Yes! got it
+                          </button>
+
+                          <button
+                            type="button"
+                            class="shadow-theme-xs flex justify-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200"
+                          >
+                            Learn more
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+
+                  <template id="popover-02-top">
+                    <div class="max-w-[390px]">
+                      <div
+                        class="relative z-20 rounded-t-xl border-b border-gray-200 px-5 py-3 dark:border-white/[0.03]"
+                      >
+                        <h4
+                          class="text-base font-semibold text-gray-800 dark:text-white/90"
+                        >
+                          Popover Title
+                        </h4>
+                      </div>
+                      <div class="p-5">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                          Lorem ipsum dolor sit amet, consect adipiscing elit.
+                          Mauris facilisis congue exclamate justo nec facilisis.
+                        </p>
+                        <div class="mt-5 flex items-center gap-3">
+                          <button
+                            type="button"
+                            class="bg-brand-500 shadow-theme-xs hover:bg-brand-600 flex justify-center rounded-lg px-4 py-2 text-sm font-medium text-white"
+                          >
+                            Yes! got it
+                          </button>
+
+                          <button
+                            type="button"
+                            class="shadow-theme-xs flex justify-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200"
+                          >
+                            Learn more
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+
+                  <template id="popover-02-bottom">
+                    <div class="max-w-[390px]">
+                      <div
+                        class="relative z-20 rounded-t-xl border-b border-gray-200 px-5 py-3 dark:border-white/[0.03]"
+                      >
+                        <h4
+                          class="text-base font-semibold text-gray-800 dark:text-white/90"
+                        >
+                          Popover Title
+                        </h4>
+                      </div>
+                      <div class="p-5">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                          Lorem ipsum dolor sit amet, consect adipiscing elit.
+                          Mauris facilisis congue exclamate justo nec facilisis.
+                        </p>
+                        <div class="mt-5 flex items-center gap-3">
+                          <button
+                            type="button"
+                            class="bg-brand-500 shadow-theme-xs hover:bg-brand-600 flex justify-center rounded-lg px-4 py-2 text-sm font-medium text-white"
+                          >
+                            Yes! got it
+                          </button>
+
+                          <button
+                            type="button"
+                            class="shadow-theme-xs flex justify-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200"
+                          >
+                            Learn more
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+
+                  <template id="popover-02-left">
+                    <div class="max-w-[390px]">
+                      <div
+                        class="relative z-20 rounded-t-xl border-b border-gray-200 px-5 py-3 dark:border-white/[0.03]"
+                      >
+                        <h4
+                          class="text-base font-semibold text-gray-800 dark:text-white/90"
+                        >
+                          Popover Title
+                        </h4>
+                      </div>
+                      <div class="p-5">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                          Lorem ipsum dolor sit amet, consect adipiscing elit.
+                          Mauris facilisis congue exclamate justo nec facilisis.
+                        </p>
+                        <div class="mt-5 flex items-center gap-3">
+                          <button
+                            type="button"
+                            class="bg-brand-500 shadow-theme-xs hover:bg-brand-600 flex justify-center rounded-lg px-4 py-2 text-sm font-medium text-white"
+                          >
+                            Yes! got it
+                          </button>
+
+                          <button
+                            type="button"
+                            class="shadow-theme-xs flex justify-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200"
+                          >
+                            Learn more
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+
+                  <!-- Example Usage -->
+                  <div class="flex flex-wrap gap-4 p-8">
+                    <!-- Popover Right -->
+                    <button
+                      data-popover="#popover-02-right"
+                      data-popover-placement="right"
+                      class="bg-brand-500 shadow-theme-xs hover:bg-brand-600 inline-flex rounded-lg px-4 py-3 text-sm font-medium text-white"
+                    >
+                      Popover on Right
+                    </button>
+
+                    <!-- Popover Top -->
+                    <button
+                      data-popover="#popover-02-top"
+                      data-popover-placement="top"
+                      class="bg-brand-500 shadow-theme-xs hover:bg-brand-600 inline-flex rounded-lg px-4 py-3 text-sm font-medium text-white"
+                    >
+                      Popover on Top
+                    </button>
+
+                    <!-- Popover Bottom -->
+                    <button
+                      data-popover="#popover-02-bottom"
+                      data-popover-placement="bottom"
+                      class="bg-brand-500 shadow-theme-xs hover:bg-brand-600 inline-flex rounded-lg px-4 py-3 text-sm font-medium text-white"
+                    >
+                      Popover on Bottom
+                    </button>
+
+                    <!-- Popover Left -->
+                    <button
+                      data-popover="#popover-02-left"
+                      data-popover-placement="left"
+                      class="bg-brand-500 shadow-theme-xs hover:bg-brand-600 inline-flex rounded-lg px-4 py-3 text-sm font-medium text-white"
+                    >
+                      Popover on Left
+                    </button>
+                  </div>
+
+                  <!-- Popover functionality is now automatically initialized via index.js -->
+                  <!-- To reinitialize popovers after adding new elements dynamically, call: window.initPopovers() -->
+                </div>
+              </div>
+
+              <div
+                class="rounded-2xl border border-gray-200 bg-white pb-32 dark:border-gray-800 dark:bg-white/[0.03]"
+              >
+                <div class="px-6 py-5">
+                  <h3
+                    class="text-base font-medium text-gray-800 dark:text-white/90"
+                  >
+                    Popover with Link
+                  </h3>
+                </div>
+                <div
+                  class="border-t border-gray-100 p-4 sm:p-6 dark:border-gray-800"
+                >
+                  <!-- Reusable Popover Component
+Usage:
+1. Add a hidden template with your popover content
+2. Add data-popover attribute to trigger element pointing to the template
+
+<template id="my-popover">
+  <div>Your content here</div>
+</template>
+
+<button data-popover="#my-popover" data-popover-placement="right">
+  Click me
+</button>
+
+Attributes:
+- data-popover: CSS selector for the popover content template (required)
+- data-popover-placement: top, right, bottom, left (optional, default: right)
+-->
+
+                  <!-- Popover Content Templates (Hidden) -->
+                  <template id="popover-03-right">
+                    <div class="max-w-[390px]">
+                      <div
+                        class="relative z-20 rounded-t-xl border-b border-gray-200 px-5 py-3 dark:border-white/[0.03]"
+                      >
+                        <h4
+                          class="text-base font-semibold text-gray-800 dark:text-white/90"
+                        >
+                          Popover Title
+                        </h4>
+                      </div>
+                      <div class="p-5">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                          Lorem ipsum dolor sit amet, consect adipiscing elit.
+                          Mauris facilisis congue exclamate justo nec facilisis.
+                        </p>
+                        <a
+                          href="#"
+                          class="text-brand-500 hover:text-brand-600 mt-5 flex items-center gap-1 text-sm font-medium"
+                        >
+                          Learn More
+                          <svg
+                            class="fill-current"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M14.0855 7.99888C14.0858 8.19107 14.0126 8.38334 13.8661 8.53001L9.86873 12.5301C9.57594 12.8231 9.10107 12.8233 8.80807 12.5305C8.51508 12.2377 8.51491 11.7629 8.8077 11.4699L11.5279 8.74772L2.66797 8.74772C2.25375 8.74772 1.91797 8.41194 1.91797 7.99772C1.91797 7.58351 2.25375 7.24772 2.66797 7.24772L11.5235 7.24772L8.80772 4.53016C8.51492 4.23718 8.51507 3.7623 8.80805 3.4695C9.10104 3.1767 9.57591 3.17685 9.86871 3.46984L13.8311 7.43478C13.9871 7.57222 14.0855 7.77348 14.0855 7.99772C14.0855 7.99811 14.0855 7.9985 14.0855 7.99888Z"
+                              fill=""
+                            />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </template>
+
+                  <template id="popover-03-top">
+                    <div class="max-w-[390px]">
+                      <div
+                        class="relative rounded-t-xl border-b border-gray-200 px-5 py-3 dark:border-white/[0.03]"
+                      >
+                        <h4
+                          class="text-base font-semibold text-gray-800 dark:text-white/90"
+                        >
+                          Popover Title
+                        </h4>
+                      </div>
+                      <div class="p-5">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                          Lorem ipsum dolor sit amet, consect adipiscing elit.
+                          Mauris facilisis congue exclamate justo nec facilisis.
+                        </p>
+                        <a
+                          href="#"
+                          class="text-brand-500 hover:text-brand-600 mt-5 flex items-center gap-1 text-sm font-medium"
+                        >
+                          Learn More
+                          <svg
+                            class="fill-current"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M14.0855 7.99888C14.0858 8.19107 14.0126 8.38334 13.8661 8.53001L9.86873 12.5301C9.57594 12.8231 9.10107 12.8233 8.80807 12.5305C8.51508 12.2377 8.51491 11.7629 8.8077 11.4699L11.5279 8.74772L2.66797 8.74772C2.25375 8.74772 1.91797 8.41194 1.91797 7.99772C1.91797 7.58351 2.25375 7.24772 2.66797 7.24772L11.5235 7.24772L8.80772 4.53016C8.51492 4.23718 8.51507 3.7623 8.80805 3.4695C9.10104 3.1767 9.57591 3.17685 9.86871 3.46984L13.8311 7.43478C13.9871 7.57222 14.0855 7.77348 14.0855 7.99772C14.0855 7.99811 14.0855 7.9985 14.0855 7.99888Z"
+                              fill=""
+                            />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </template>
+
+                  <template id="popover-03-bottom">
+                    <div class="max-w-[390px]">
+                      <div
+                        class="relative rounded-t-xl border-b border-gray-200 px-5 py-3 dark:border-white/[0.03]"
+                      >
+                        <h4
+                          class="text-base font-semibold text-gray-800 dark:text-white/90"
+                        >
+                          Popover Title
+                        </h4>
+                      </div>
+                      <div class="p-5">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                          Lorem ipsum dolor sit amet, consect adipiscing elit.
+                          Mauris facilisis congue exclamate justo nec facilisis.
+                        </p>
+                        <a
+                          href="#"
+                          class="text-brand-500 hover:text-brand-600 mt-5 flex items-center gap-1 text-sm font-medium"
+                        >
+                          Learn More
+                          <svg
+                            class="fill-current"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M14.0855 7.99888C14.0858 8.19107 14.0126 8.38334 13.8661 8.53001L9.86873 12.5301C9.57594 12.8231 9.10107 12.8233 8.80807 12.5305C8.51508 12.2377 8.51491 11.7629 8.8077 11.4699L11.5279 8.74772L2.66797 8.74772C2.25375 8.74772 1.91797 8.41194 1.91797 7.99772C1.91797 7.58351 2.25375 7.24772 2.66797 7.24772L11.5235 7.24772L8.80772 4.53016C8.51492 4.23718 8.51507 3.7623 8.80805 3.4695C9.10104 3.1767 9.57591 3.17685 9.86871 3.46984L13.8311 7.43478C13.9871 7.57222 14.0855 7.77348 14.0855 7.99772C14.0855 7.99811 14.0855 7.9985 14.0855 7.99888Z"
+                              fill=""
+                            />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </template>
+
+                  <template id="popover-03-left">
+                    <div class="max-w-[390px]">
+                      <div
+                        class="relative z-20 rounded-t-xl border-b border-gray-200 px-5 py-3 dark:border-white/[0.03]"
+                      >
+                        <h4
+                          class="text-base font-semibold text-gray-800 dark:text-white/90"
+                        >
+                          Popover Title
+                        </h4>
+                      </div>
+                      <div class="p-5">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                          Lorem ipsum dolor sit amet, consect adipiscing elit.
+                          Mauris facilisis congue exclamate justo nec facilisis.
+                        </p>
+                        <a
+                          href="#"
+                          class="text-brand-500 hover:text-brand-600 mt-5 flex items-center gap-1 text-sm font-medium"
+                        >
+                          Learn More
+                          <svg
+                            class="fill-current"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M14.0855 7.99888C14.0858 8.19107 14.0126 8.38334 13.8661 8.53001L9.86873 12.5301C9.57594 12.8231 9.10107 12.8233 8.80807 12.5305C8.51508 12.2377 8.51491 11.7629 8.8077 11.4699L11.5279 8.74772L2.66797 8.74772C2.25375 8.74772 1.91797 8.41194 1.91797 7.99772C1.91797 7.58351 2.25375 7.24772 2.66797 7.24772L11.5235 7.24772L8.80772 4.53016C8.51492 4.23718 8.51507 3.7623 8.80805 3.4695C9.10104 3.1767 9.57591 3.17685 9.86871 3.46984L13.8311 7.43478C13.9871 7.57222 14.0855 7.77348 14.0855 7.99772C14.0855 7.99811 14.0855 7.9985 14.0855 7.99888Z"
+                              fill=""
+                            />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </template>
+
+                  <!-- Example Usage -->
+                  <div class="flex flex-wrap gap-4 p-8">
+                    <!-- Popover Right -->
+                    <button
+                      data-popover="#popover-03-right"
+                      data-popover-placement="right"
+                      class="bg-brand-500 shadow-theme-xs hover:bg-brand-600 inline-flex rounded-lg px-4 py-3 text-sm font-medium text-white"
+                    >
+                      Popover on Right
+                    </button>
+
+                    <!-- Popover Top -->
+                    <button
+                      data-popover="#popover-03-top"
+                      data-popover-placement="top"
+                      class="bg-brand-500 shadow-theme-xs hover:bg-brand-600 inline-flex rounded-lg px-4 py-3 text-sm font-medium text-white"
+                    >
+                      Popover on Top
+                    </button>
+
+                    <!-- Popover Bottom -->
+                    <button
+                      data-popover="#popover-03-bottom"
+                      data-popover-placement="bottom"
+                      class="bg-brand-500 shadow-theme-xs hover:bg-brand-600 inline-flex rounded-lg px-4 py-3 text-sm font-medium text-white"
+                    >
+                      Popover on Bottom
+                    </button>
+
+                    <!-- Popover Left -->
+                    <button
+                      data-popover="#popover-03-left"
+                      data-popover-placement="left"
+                      class="bg-brand-500 shadow-theme-xs hover:bg-brand-600 inline-flex rounded-lg px-4 py-3 text-sm font-medium text-white"
+                    >
+                      Popover on Left
+                    </button>
+                  </div>
+
+                  <!-- Popover functionality is now automatically initialized via index.js -->
+                  <!-- To reinitialize popovers after adding new elements dynamically, call: window.initPopovers() -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+        <!-- ===== Main Content End ===== -->
+      </div>
+      <!-- ===== Content Area End ===== -->
+    </div>
+    <!-- ===== Page Wrapper End ===== -->
+  </body>
+</html>
